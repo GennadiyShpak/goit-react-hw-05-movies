@@ -11,11 +11,11 @@ function Form({ onSubmit }) {
   function onClickSubmiit(e) {
     e.preventDefault();
 
-    // if (value.trim() === '') {
-    //   return toast.error('Wrong request !');
-    // }
-    onSubmit(searchValue);
-
+    if (searchValue.trim() === '') {
+      return ;
+    }
+    // onSubmit(searchValue);
+console.log(searchValue);
     reset();
   }
 

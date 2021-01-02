@@ -5,12 +5,14 @@ import Form from '../components/Form';
 import API from '../services/filmService';
 
 function MoviesPage() {
-  function getMoviesOnSearch() {
+
+  const getMoviesOnSearch = async (data)=> {
     useEffect(() => {
-      const result = API.getFilmsByQuerry();
-      console.log(result)01;
-    }, [input]);
+      const result = await API.getFilmsByQuerry(data);
+      console.log(result);
+    }, []);
+console.log(data);
   }
-  return <Form onSubmit={} />;
+  return <Form onSubmit={getMoviesOnSearch} />;
 }
 export default MoviesPage;
