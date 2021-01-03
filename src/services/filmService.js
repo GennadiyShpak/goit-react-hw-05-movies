@@ -18,7 +18,7 @@ const getFilmsByTrending = async () => {
 };
 const getFilmsByQuerry = async q => {
   try {
-    const response = await AXIOS.get(`trending/all/day?&query=${q}`);
+    const response = await AXIOS.get(`search/movie?&query=${q}`);
     const { data } = response;
     return data;
   } catch (error) {

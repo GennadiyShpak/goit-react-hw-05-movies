@@ -3,25 +3,19 @@ import { useState } from 'react';
 function Form({ onSubmit }) {
   const [searchValue, setSearchValue] = useState('');
 
-  function onChangeHandler({ target }) {
+  const onChangeHandler = ({ target }) => {
     const { value } = target;
     setSearchValue(value);
-  }
+  };
 
-  function onClickSubmiit(e) {
+  const onClickSubmiit = e => {
     e.preventDefault();
 
     if (searchValue.trim() === '') {
-      return ;
+      return;
     }
-    // onSubmit(searchValue);
-console.log(searchValue);
-    reset();
-  }
-
-  function reset() {
-    setSearchValue('');
-  }
+    onSubmit(searchValue);
+  };
 
   return (
     <form action="submit" onSubmit={onClickSubmiit}>
