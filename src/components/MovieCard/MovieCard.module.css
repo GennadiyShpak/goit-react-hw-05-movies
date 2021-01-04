@@ -1,0 +1,12 @@
+.homePageList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.homePageItem {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+.movieTitle {
+  font-size: 16px;
+}

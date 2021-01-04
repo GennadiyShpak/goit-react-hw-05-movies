@@ -1,0 +1,33 @@
+.container {
+  padding: 20px 0;
+  box-shadow: 0 3px rgba(0, 0, 255, 0.2);
+}
+.movieWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  max-width: 800px;
+}
+.genresList {
+  display: flex;
+  flex-direction: column;
+}
+.genresWrapper {
+  display: flex;
+}
+.movieTitle {
+  margin-bottom: 20px;
+}
+.overview {
+  margin-bottom: 20px;
+}
+.genresItem {
+  margin-right: 10px;
+}
+.genresTitle {
+  margin-bottom: 10px;
+}
+.goBackBtn {
+  margin-bottom: 20px;
+}

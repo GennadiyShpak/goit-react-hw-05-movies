@@ -1,7 +1,12 @@
 .navLink {
   color: black;
+  margin-right: 20px;
 }
 
 .activeLink {
   color: aqua;
+}
+.nav {
+  padding: 20px 0;
+  box-shadow: 0 3px rgba(0, 0, 255, 0.2);
 }

@@ -26,6 +26,16 @@ const getFilmsByQuerry = async q => {
   }
 };
 
-const API = { getFilmsByTrending, getFilmsByQuerry };
+const getFilmsById = async id => {
+  try {
+    const response = await AXIOS.get(`/movie/${id}?`);
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log('error', { error });
+  }
+};
+
+const API = { getFilmsByTrending, getFilmsByQuerry, getFilmsById };
 
 export default API;

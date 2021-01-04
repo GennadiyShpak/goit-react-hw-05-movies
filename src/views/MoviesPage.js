@@ -5,7 +5,7 @@ import SearchResult from '../components/SearchResult';
 
 import API from '../services/filmService';
 
-function MoviesPage() {
+function MoviesPage({ onClick }) {
   const [searchQurerry, setSearchQurerry] = useState('');
   const [searchResults, setSearchResults] = useState(null);
 
@@ -13,11 +13,11 @@ function MoviesPage() {
     if (!searchQurerry) {
       return;
     }
-    const getMoviesOnSearch = async () => {
+    const getMoviesByQuerryHandler = async () => {
       const { results } = await API.getFilmsByQuerry(searchQurerry);
       setSearchResults(results);
     };
-    getMoviesOnSearch();
+    getMoviesByQuerryHandler();
   }, [searchQurerry]);
 
   const searchImputHandler = data => {
@@ -30,7 +30,9 @@ function MoviesPage() {
   return (
     <>
       <Form onSubmit={searchImputHandler} />
-      {searchResults && <SearchResult searchResult={searchResults} />}
+      {searchResults && (
+        <SearchResult searchResult={searchResults} onClick={onClick} />
+      )}
     </>
   );
 }

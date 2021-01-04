@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import s from './Form.module.css';
+
 function Form({ onSubmit }) {
   const [searchValue, setSearchValue] = useState('');
 
@@ -15,11 +17,20 @@ function Form({ onSubmit }) {
       return;
     }
     onSubmit(searchValue);
+    reset();
+  };
+  const reset = e => {
+    setSearchValue('');
   };
 
   return (
-    <form action="submit" onSubmit={onClickSubmiit}>
-      <input type="text" onChange={onChangeHandler} />
+    <form action="submit" onSubmit={onClickSubmiit} className={s.form}>
+      <input
+        type="text"
+        onChange={onChangeHandler}
+        value={searchValue}
+        className={s.searchInput}
+      />
       <button type="submit">Search</button>
     </form>
   );

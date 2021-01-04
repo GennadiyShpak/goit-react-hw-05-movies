@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import API from '../services/filmService';
+import s from '../viewStyle/HomePage.module.css';
+import MovieCard from '../components/MovieCard';
 
 function HomePage() {
   const [films, setFilms] = useState(null);
@@ -16,20 +18,8 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Trending today</h1>
-      {films && (
-        <ul>
-          {films.map(movie => (
-            <li key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                alt={movie.name || movie.title}
-              />
-              <h2>{movie.name || movie.title}</h2>
-            </li>
-          ))}
-        </ul>
-      )}
+      <h1 className={s.headTitle}>Trending today</h1>
+      {films && <MovieCard films={films} />}
     </div>
   );
 }

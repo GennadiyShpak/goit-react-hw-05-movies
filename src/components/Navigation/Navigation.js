@@ -4,7 +4,7 @@ import s from './Navigation.module.css';
 
 function Navigation() {
   return (
-    <nav>
+    <nav className={s.nav}>
       <NavLink
         exact
         to="/"

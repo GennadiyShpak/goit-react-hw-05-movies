@@ -1,12 +1,7 @@
+import MovieCard from '../MovieCard';
+
 const SearchResult = ({ searchResult }) => {
-  console.log(searchResult);
-  return (
-    <ul>
-      {searchResult.map(({ id, title }) => (
-        <li key={id}>{title}</li>
-      ))}
-    </ul>
-  );
+  return <MovieCard films={searchResult} />;
 };
 
 export default SearchResult;
