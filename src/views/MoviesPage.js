@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Form from '../components/Form';
-import SearchResult from '../components/SearchResult';
+import MovieSearch from '../components/MovieSearch';
 
 import API from '../services/filmService';
 
@@ -31,7 +31,7 @@ function MoviesPage({ onClick }) {
     <>
       <Form onSubmit={searchImputHandler} />
       {searchResults && (
-        <SearchResult searchResult={searchResults} onClick={onClick} />
+        <MovieSearch searchResult={searchResults} onClick={onClick} />
       )}
     </>
   );

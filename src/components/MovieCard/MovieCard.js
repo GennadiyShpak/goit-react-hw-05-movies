@@ -1,30 +1,26 @@
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import notFound from '../../img/notFound.png';
 
 import s from './MovieCard.module.css';
 
-const MovieCard = ({ films }) => {
-  const { url } = useRouteMatch();
+const MovieCard = ({ movieInfo }) => {
+  const { id, backdrop_path, name, title } = movieInfo;
   return (
-    <ul className={s.homePageList}>
-      {films.map(({ id, backdrop_path, name, title }) => (
-        <li key={id} className={s.homePageItem}>
-          <Link to={`${url}/${id}`}>
-            <>
-              <img
-                src={
-                  backdrop_path
-                    ? `https://image.tmdb.org/t/p/w300/${backdrop_path}`
-                    : notFound
-                }
-                alt={name || title}
-              />
-              <h2 className={s.movieTitle}>{name || title}</h2>
-            </>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <li className={s.homePageItem}>
+      <Link to={`/movies/${id}`}>
+        <>
+          <img
+            src={
+              backdrop_path
+                ? `https://image.tmdb.org/t/p/w300/${backdrop_path}`
+                : notFound
+            }
+            alt={name || title}
+          />
+          <h2 className={s.movieTitle}>{name || title}</h2>
+        </>
+      </Link>
+    </li>
   );
 };
 export default MovieCard;

@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, NavLink, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import API from '../services/filmService';
-// import s from '../viewStyle/MovieDetailsPage.module.css';
 import MovieOverView from '../components/MovieOverView';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetail, setMovieDetail] = useState('');
-  const { url } = useRouteMatch();
 
   useEffect(() => {
     if (!movieId) {

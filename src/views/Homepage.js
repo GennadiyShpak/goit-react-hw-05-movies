@@ -19,7 +19,13 @@ function HomePage() {
   return (
     <div>
       <h1 className={s.headTitle}>Trending today</h1>
-      {films && <MovieCard films={films} />}
+      {films && (
+        <ul className={s.homePageList}>
+          {films.map(movieInfo => (
+            <MovieCard key={movieInfo.id} movieInfo={movieInfo} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

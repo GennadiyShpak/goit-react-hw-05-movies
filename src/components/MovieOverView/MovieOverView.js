@@ -1,4 +1,7 @@
+import { Route, NavLink } from 'react-router-dom';
 import s from './MovieOverView.module.css';
+import Reviews from '../../views/Reviews';
+import Cast from '../../views/Cast';
 
 const MovieOverView = ({ movieDetail }) => {
   const {
@@ -7,6 +10,8 @@ const MovieOverView = ({ movieDetail }) => {
     backdrop_path,
     overview,
     genres,
+    poster_path,
+    id,
   } = movieDetail;
   return (
     <>
@@ -14,7 +19,11 @@ const MovieOverView = ({ movieDetail }) => {
         {/* <Link className={s.goBackBtn}>Go back</Link> */}
         <div className={s.movieWrapper}>
           <img
-            src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
+            src={
+              backdrop_path
+                ? `https://image.tmdb.org/t/p/w400/${backdrop_path}`
+                : `https://image.tmdb.org/t/p/w400/${poster_path}`
+            }
             alt={title}
           />
           <div className={s.wrapper}>
@@ -32,8 +41,16 @@ const MovieOverView = ({ movieDetail }) => {
             </ul>
           </div>
         </div>
+        <div className={s.additionalInfoContainer}>
+          <h2 className={s.additionalTitle}>Aditional info</h2>
+          <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
+          <NavLink to={`/movies/${id}/review`}>Review</NavLink>
+        </div>
+        <Route path={`/movies/:movieId/cast`}>{id && <Cast id={id} />}</Route>
+        <Route path={`/movies/:movieId/review`}>
+          {id && <Reviews id={id} />}
+        </Route>
       </div>
-      ,
     </>
   );
 };

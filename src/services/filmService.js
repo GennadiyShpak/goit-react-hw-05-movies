@@ -9,7 +9,7 @@ const AXIOS = axios.create({
 
 const getFilmsByTrending = async () => {
   try {
-    const response = await AXIOS.get(`trending/all/day?`);
+    const response = await AXIOS.get(`trending/movie/day?`);
     const { data } = response;
     return data;
   } catch (error) {
@@ -35,7 +35,31 @@ const getFilmsById = async id => {
     console.log('error', { error });
   }
 };
+const getCastFilmsById = async id => {
+  try {
+    const response = await AXIOS.get(`/movie/${id}/credits?`);
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log('error', { error });
+  }
+};
+const getReviewsFilmsById = async id => {
+  try {
+    const response = await AXIOS.get(`/movie/${id}/reviews?`);
+    const { data } = response;
+    return data;
+  } catch (error) {
+    console.log('error', { error });
+  }
+};
 
-const API = { getFilmsByTrending, getFilmsByQuerry, getFilmsById };
+const API = {
+  getFilmsByTrending,
+  getFilmsByQuerry,
+  getFilmsById,
+  getCastFilmsById,
+  getReviewsFilmsById,
+};
 
 export default API;
