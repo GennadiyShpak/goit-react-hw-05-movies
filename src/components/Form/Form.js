@@ -1,13 +1,20 @@
 import { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import s from './Form.module.css';
 
 function Form({ onSubmit }) {
   const [searchValue, setSearchValue] = useState('');
+  const history = useHistory();
+  const location = useLocation();
 
   const onChangeHandler = ({ target }) => {
     const { value } = target;
     setSearchValue(value);
+  };
+
+  const onAdressBarHandler = () => {
+    history.push({ ...location, search: `querry=${searchValue}` });
   };
 
   const onClickSubmiit = e => {
@@ -17,6 +24,7 @@ function Form({ onSubmit }) {
       return;
     }
     onSubmit(searchValue);
+    onAdressBarHandler();
     reset();
   };
   const reset = e => {

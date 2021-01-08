@@ -15,8 +15,11 @@ const Reviews = ({ id }) => {
   }, [id]);
   return (
     <ul className={s.list}>
-      {reviews &&
-        reviews.map(review => <MovieReviews key={review.id} info={review} />)}
+      {reviews.length !== 0 ? (
+        reviews.map(review => <MovieReviews key={review.id} info={review} />)
+      ) : (
+        <h3>Reviews not found</h3>
+      )}
     </ul>
   );
 };

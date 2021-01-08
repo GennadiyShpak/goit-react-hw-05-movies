@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Form from '../components/Form';
 import MovieSearch from '../components/MovieSearch';
 
 import API from '../services/filmService';
 
-function MoviesPage({ onClick }) {
+function MoviesPage() {
+  const location = useLocation();
   const [searchQurerry, setSearchQurerry] = useState('');
   const [searchResults, setSearchResults] = useState(null);
+  const adressBarQuerry = new URLSearchParams(location.search).get('querry');
+
+  useEffect(() => {
+    setSearchQurerry(adressBarQuerry);
+  }, [adressBarQuerry]);
 
   useEffect(() => {
     if (!searchQurerry) {
@@ -30,9 +37,7 @@ function MoviesPage({ onClick }) {
   return (
     <>
       <Form onSubmit={searchImputHandler} />
-      {searchResults && (
-        <MovieSearch searchResult={searchResults} onClick={onClick} />
-      )}
+      {searchResults && <MovieSearch searchResult={searchResults} />}
     </>
   );
 }

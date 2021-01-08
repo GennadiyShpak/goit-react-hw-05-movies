@@ -1,9 +1,17 @@
-import { Route, NavLink } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Route, NavLink, useHistory, useLocation } from 'react-router-dom';
+
 import s from './MovieOverView.module.css';
-import Reviews from '../../views/Reviews';
-import Cast from '../../views/Cast';
+const Reviews = lazy(() =>
+  import('../../views/Reviews.js' /*webpackChunkName: "review-page"*/),
+);
+const Cast = lazy(() =>
+  import('../../views/Cast.js' /*webpackChunkName: "cast-page"*/),
+);
 
 const MovieOverView = ({ movieDetail }) => {
+  const history = useHistory();
+  const location = useLocation();
   const {
     original_title,
     title,
@@ -13,10 +21,20 @@ const MovieOverView = ({ movieDetail }) => {
     poster_path,
     id,
   } = movieDetail;
+
+  const onGoBackBtn = () => {
+    history.push(location?.state?.from ?? '/');
+  };
+
   return (
     <>
       <div className={s.container}>
-        {/* <Link className={s.goBackBtn}>Go back</Link> */}
+        <div>
+          <button onClick={onGoBackBtn} className={s.goBackBtn}>
+            go back
+          </button>
+        </div>
+
         <div className={s.movieWrapper}>
           <img
             src={
@@ -43,13 +61,29 @@ const MovieOverView = ({ movieDetail }) => {
         </div>
         <div className={s.additionalInfoContainer}>
           <h2 className={s.additionalTitle}>Aditional info</h2>
-          <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
-          <NavLink to={`/movies/${id}/review`}>Review</NavLink>
+          <NavLink
+            to={{
+              pathname: `/movies/${id}/cast`,
+              state: { from: location?.state?.from ?? '/' },
+            }}
+          >
+            Cast
+          </NavLink>
+          <NavLink
+            to={{
+              pathname: `/movies/${id}/review`,
+              state: { from: location?.state?.from ?? '/' },
+            }}
+          >
+            Review
+          </NavLink>
         </div>
-        <Route path={`/movies/:movieId/cast`}>{id && <Cast id={id} />}</Route>
-        <Route path={`/movies/:movieId/review`}>
-          {id && <Reviews id={id} />}
-        </Route>
+        <Suspense fallback={<h3>Loading</h3>}>
+          <Route path={`/movies/:movieId/cast`}>{id && <Cast id={id} />}</Route>
+          <Route path={`/movies/:movieId/review`}>
+            {id && <Reviews id={id} />}
+          </Route>
+        </Suspense>
       </div>
     </>
   );

@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import notFound from '../../img/notFound.png';
 
 import s from './MovieCard.module.css';
 
 const MovieCard = ({ movieInfo }) => {
+  const location = useLocation();
   const { id, backdrop_path, name, title } = movieInfo;
   return (
     <li className={s.homePageItem}>
-      <Link to={`/movies/${id}`}>
+      <Link to={{ pathname: `/movies/${id}`, state: { from: location } }}>
         <>
           <img
             src={

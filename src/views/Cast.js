@@ -15,10 +15,13 @@ const Cast = ({ id }) => {
   }, [id]);
   return (
     <ul className={s.list}>
-      {actorsState &&
+      {actorsState.length !== 0 ? (
         actorsState.map(profile => (
           <ActorsCard key={profile.id} info={profile} />
-        ))}
+        ))
+      ) : (
+        <h3>Page not found</h3>
+      )}
     </ul>
   );
 };

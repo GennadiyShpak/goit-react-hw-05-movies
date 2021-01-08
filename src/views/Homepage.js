@@ -6,6 +6,7 @@ import MovieCard from '../components/MovieCard';
 
 function HomePage() {
   const [films, setFilms] = useState(null);
+
   useEffect(() => {
     try {
       async function getFilms() {
