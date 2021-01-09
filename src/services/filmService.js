@@ -7,18 +7,18 @@ const AXIOS = axios.create({
   },
 });
 
-const getFilmsByTrending = async () => {
+const getFilmsByTrending = async p => {
   try {
-    const response = await AXIOS.get(`trending/movie/day?`);
+    const response = await AXIOS.get(`trending/movie/day?&page=${p}`);
     const { data } = response;
     return data;
   } catch (error) {
     console.log('error', { error });
   }
 };
-const getFilmsByQuerry = async q => {
+const getFilmsByQuerry = async (q, p) => {
   try {
-    const response = await AXIOS.get(`search/movie?&query=${q}`);
+    const response = await AXIOS.get(`search/movie?&query=${q}&page=${p}`);
     const { data } = response;
     return data;
   } catch (error) {

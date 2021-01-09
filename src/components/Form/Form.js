@@ -14,7 +14,7 @@ function Form({ onSubmit }) {
   };
 
   const onAdressBarHandler = () => {
-    history.push({ ...location, search: `querry=${searchValue}` });
+    history.push({ ...location, search: `querry=${searchValue}&page=${1}` });
   };
 
   const onClickSubmiit = e => {

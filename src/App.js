@@ -1,6 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import AppBar from './components/AppBar';
 
 const HomePage = lazy(() =>
@@ -14,15 +17,16 @@ const MovieDetailsPage = lazy(() =>
     './views/MovieDetailsPage.js' /* webpackChunkName: "movie-detail-page" */
   ),
 );
-const NotFound = lazy(() =>
-  import('./views/NotFound.js' /* webpackChunkName: "not-fond-page" */),
-);
 
 function App() {
   return (
     <>
       <AppBar />
-      <Suspense fallback={<h1>Loading</h1>}>
+      <Suspense
+        fallback={
+          <Loader type="BallTriangle" color="#000" height={180} width={180} />
+        }
+      >
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -32,10 +36,6 @@ function App() {
           </Route>
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
-          </Route>
-
-          <Route>
-            <NotFound />
           </Route>
         </Switch>
       </Suspense>

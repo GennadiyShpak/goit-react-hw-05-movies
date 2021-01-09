@@ -1,6 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { Route, NavLink, useHistory, useLocation } from 'react-router-dom';
 
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import s from './MovieOverView.module.css';
 const Reviews = lazy(() =>
   import('../../views/Reviews.js' /*webpackChunkName: "review-page"*/),
@@ -78,7 +81,11 @@ const MovieOverView = ({ movieDetail }) => {
             Review
           </NavLink>
         </div>
-        <Suspense fallback={<h3>Loading</h3>}>
+        <Suspense
+          fallback={
+            <Loader type="BallTriangle" color="#000" height={180} width={180} />
+          }
+        >
           <Route path={`/movies/:movieId/cast`}>{id && <Cast id={id} />}</Route>
           <Route path={`/movies/:movieId/review`}>
             {id && <Reviews id={id} />}
