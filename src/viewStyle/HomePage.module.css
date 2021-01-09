@@ -7,3 +7,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.pagination {
+  margin: 0 auto;
+}

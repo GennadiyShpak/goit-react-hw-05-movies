@@ -6,6 +6,7 @@ import Form from '../components/Form';
 import MovieSearch from '../components/MovieSearch';
 import NotFound from '../views/NotFound';
 import API from '../services/filmService';
+import useStyles from '../hook/pagination';
 
 function MoviesPage() {
   const [searchQurerry, setSearchQurerry] = useState('');
@@ -13,6 +14,7 @@ function MoviesPage() {
   const [totalPages, setTotalPages] = useState(null);
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState('pending');
+  const style = useStyles();
   const location = useLocation();
   const history = useHistory();
 
@@ -76,6 +78,7 @@ function MoviesPage() {
         <Form onSubmit={searchImputHandler} />
         <MovieSearch searchResult={searchResults} />
         <Pagination
+          className={style.root}
           count={totalPages}
           page={Number(page)}
           onChange={onHandlePage}
